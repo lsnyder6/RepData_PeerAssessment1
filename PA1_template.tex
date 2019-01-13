@@ -1,0 +1,299 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Reproducible Research Project 1},
+            pdfauthor={lsnyder6},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{Reproducible Research Project 1}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+    \author{lsnyder6}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+    \date{}
+    \predate{}\postdate{}
+  
+
+\begin{document}
+\maketitle
+
+\subsubsection{Load and Preprocess the
+data}\label{load-and-preprocess-the-data}
+
+The data is provided in a link on the assignment page. Download the data
+and save. Open RStudio. Select the location with the csv file as the
+working directory. Working directory can be chosen by selecting the
+`Session' tab, then choosing `Set Working Directory,' then choosing
+`Select Directory' and navigating to the folder where the data is
+located. Data is named `pr1' in this example (abbreviation for project
+1). Using the `View' function allows viewing of the data set to aid in
+analysis.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pr1<-}\KeywordTok{read.csv}\NormalTok{(}\StringTok{"activity.csv"}\NormalTok{)}
+\KeywordTok{View}\NormalTok{(pr1)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{What is mean number of steps taken per day? What is the
+median number of steps taken per
+day?}\label{what-is-mean-number-of-steps-taken-per-day-what-is-the-median-number-of-steps-taken-per-day}
+
+Steps are presented in the data set as total steps taken every 5
+minutes. Each interval of 5 minutes is expressed as an interval number,
+beginning at 0 and ending at 2355. The question requires the number of
+steps taken per day as a basis for the mean number of steps per day.
+Take steps data and aggregate by day. Then calculate the mean.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{##'pr1' contains steps, date and interval. Some 'steps' records are NA.}
+\NormalTok{##Aggregate 5-min interval data by date by summing all step records for each date.}
+\NormalTok{daysteps <-}\StringTok{ }\KeywordTok{aggregate}\NormalTok{(steps }\OperatorTok{~}\StringTok{ }\NormalTok{date, pr1, sum)}
+
+\NormalTok{##Build a histogram.}
+\KeywordTok{hist}\NormalTok{(daysteps}\OperatorTok{$}\NormalTok{steps, }\DataTypeTok{main=}\StringTok{"Total Steps Each Day"}\NormalTok{, }\DataTypeTok{col=}\StringTok{'yellow'}\NormalTok{, }\DataTypeTok{xlab=}\StringTok{"Steps taken in a day"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Number of days"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{PA1_template_files/figure-latex/meanmedian-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{##Calculate mean and median by date.}
+\NormalTok{pr1mean <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(daysteps}\OperatorTok{$}\NormalTok{steps)}
+\NormalTok{pr1median <-}\StringTok{ }\KeywordTok{median}\NormalTok{(daysteps}\OperatorTok{$}\NormalTok{steps)}
+\end{Highlighting}
+\end{Shaded}
+
+The mean is 1.0766189\times 10\^{}\{4\} and the median is 10765. Of
+note, there are 53 records for daysteps. That is, 8 days all entries
+were NA.
+
+\subsubsection{What is the average daily activity
+pattern?}\label{what-is-the-average-daily-activity-pattern}
+
+Build a time series plot of the average number of steps taken in each
+5-minute interval (x-axis), averaged across all days (y-axis).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{intsteps <-}\StringTok{ }\KeywordTok{aggregate}\NormalTok{(steps }\OperatorTok{~}\StringTok{ }\NormalTok{interval, pr1, mean)}
+\KeywordTok{plot}\NormalTok{(intsteps}\OperatorTok{$}\NormalTok{interval,intsteps}\OperatorTok{$}\NormalTok{steps, }\DataTypeTok{type=}\StringTok{"l"}\NormalTok{, }\DataTypeTok{xlab=}\StringTok{"5-min Interval"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Number of Steps"}\NormalTok{,}\DataTypeTok{main=}\StringTok{"Averages Steps per Day at Interval"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{PA1_template_files/figure-latex/intsteps-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{maxint <-}\StringTok{ }\NormalTok{intsteps[}\KeywordTok{which.max}\NormalTok{(intsteps}\OperatorTok{$}\NormalTok{steps),}\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+The 5 minute interval which contains the maximum number of steps is 835.
+
+\subsection{Impute missing values.}\label{impute-missing-values.}
+
+There are a number of days/intervals where there are missing values. The
+presence of missing days may introduce bias into some calculations or
+summaries of the data.
+
+Missing values can be imputed by inserting the average number of steps
+taken overall into the NA spots. This will have a minimal effect on the
+data set as the mean will not change at all. Although the total number
+of steps for all 61 days will be higher, that is because the average
+daily steps for the 8 days that originally had no data has been
+inserted. Alhtough there is no record of steps taken, it is reasonable
+to assume that the individual did do an average amount of stepping on
+the days s/he was not using the activity tracker.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{##Find number of incompete records.}
+\NormalTok{incomplete <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(}\OperatorTok{!}\KeywordTok{complete.cases}\NormalTok{(pr1))}
+
+\NormalTok{##Impute by taking the average of all intervals, and substituting value in NA.}
+\NormalTok{meanintstep<-}\KeywordTok{mean}\NormalTok{(pr1}\OperatorTok{$}\NormalTok{steps, }\DataTypeTok{na.rm=}\OtherTok{TRUE}\NormalTok{) }
+\NormalTok{imppr1<-pr1}
+\NormalTok{imppr1}\OperatorTok{$}\NormalTok{steps[}\KeywordTok{is.na}\NormalTok{(imppr1}\OperatorTok{$}\NormalTok{steps)]<-meanintstep}
+
+\NormalTok{##Re-do the calculations with the imputed data set and see how it effects mean and median.}
+\NormalTok{newdaysteps <-}\StringTok{ }\KeywordTok{aggregate}\NormalTok{(steps }\OperatorTok{~}\StringTok{ }\NormalTok{date, imppr1, sum)}
+\KeywordTok{hist}\NormalTok{(newdaysteps}\OperatorTok{$}\NormalTok{steps, }\DataTypeTok{main=}\StringTok{"Total Steps Each Day (imputed data)"}\NormalTok{, }\DataTypeTok{col=}\StringTok{'salmon'}\NormalTok{, }\DataTypeTok{xlab=}\StringTok{"Steps Taken in a Day"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Number of Days"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{PA1_template_files/figure-latex/imputeNA-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{imppr1mean <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(newdaysteps}\OperatorTok{$}\NormalTok{steps)}
+\NormalTok{imppr1median <-}\StringTok{ }\KeywordTok{median}\NormalTok{(newdaysteps}\OperatorTok{$}\NormalTok{steps)}
+\end{Highlighting}
+\end{Shaded}
+
+The new mean is 1.0766189\times 10\^{}\{4\} and the new median is
+1.0766189\times 10\^{}\{4\}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mean_diff <-}\StringTok{ }\NormalTok{imppr1mean}\OperatorTok{-}\StringTok{ }\NormalTok{pr1mean}
+\NormalTok{median_diff <-}\StringTok{ }\NormalTok{imppr1median }\OperatorTok{-}\StringTok{ }\NormalTok{pr1median}
+\NormalTok{total_diff <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(newdaysteps}\OperatorTok{$}\NormalTok{steps) }\OperatorTok{-}\StringTok{ }\KeywordTok{sum}\NormalTok{(daysteps}\OperatorTok{$}\NormalTok{steps)}
+\end{Highlighting}
+\end{Shaded}
+
+The difference in the means is 0, the difference in the medians is
+1.1886792, and the difference the the sum of steps over 61 days is
+\texttt{total\_diff}. There are now records for all 61 days in the data
+frame as the average step numbers have been inserted where there were
+previously NAs.
+
+The data can be broken into groups, as activity occuring on weekends or
+weekdays. Then the difference in activity between the types of days can
+be visually examined. Add the day of the week to the original data
+frame, pr1. Subset daily data to express activity on weekdays vs
+weekends. There are two factors to be defined, which can be column
+binded onto the end of the data set.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{y<-}\KeywordTok{weekdays}\NormalTok{(}\KeywordTok{as.Date}\NormalTok{(pr1}\OperatorTok{$}\NormalTok{date))}
+\NormalTok{newimppr1<-}\KeywordTok{cbind}\NormalTok{(imppr1, y)}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(y)}
+\KeywordTok{levels}\NormalTok{(x) <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DataTypeTok{weekday=}\KeywordTok{c}\NormalTok{(}\StringTok{"Monday"}\NormalTok{, }\StringTok{"Tuesday"}\NormalTok{, }\StringTok{"Wednesday"}\NormalTok{,}\StringTok{"Thursday"}\NormalTok{, }\StringTok{"Friday"}\NormalTok{), }\DataTypeTok{weekend=}\KeywordTok{c}\NormalTok{(}\StringTok{"Saturday"}\NormalTok{, }\StringTok{"Sunday"}\NormalTok{))}
+\NormalTok{newimppr2<-}\KeywordTok{cbind}\NormalTok{(imppr1, x)}
+\end{Highlighting}
+\end{Shaded}
+
+Finally, build a two panel plot to compare activity on weekdays and
+weekends, side by side.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\NormalTok{weekdaydf<-}\StringTok{ }\KeywordTok{subset}\NormalTok{(newimppr2, x}\OperatorTok{==}\StringTok{"weekday"}\NormalTok{)}
+\NormalTok{wd <-}\StringTok{ }\KeywordTok{aggregate}\NormalTok{(steps }\OperatorTok{~}\StringTok{ }\NormalTok{interval, weekdaydf, mean, }\DataTypeTok{na.rm=}\OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(wd, }\DataTypeTok{type=}\StringTok{"l"}\NormalTok{, }\DataTypeTok{xlab=}\StringTok{"Weekday 5-min Interval"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Average Steps"}\NormalTok{, }\DataTypeTok{main=}\StringTok{"Weekday Activity"}\NormalTok{)}
+\NormalTok{weekenddf<-}\StringTok{ }\KeywordTok{subset}\NormalTok{(newimppr2, x}\OperatorTok{==}\StringTok{"weekend"}\NormalTok{)}
+\NormalTok{we <-}\StringTok{ }\KeywordTok{aggregate}\NormalTok{(steps }\OperatorTok{~}\StringTok{ }\NormalTok{interval, weekenddf, mean, }\DataTypeTok{na.rm=}\OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(we, }\DataTypeTok{type=}\StringTok{"l"}\NormalTok{, }\DataTypeTok{xlab=}\StringTok{"Weekend 5-min Interval"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Average Steps"}\NormalTok{, }\DataTypeTok{main=}\StringTok{"Weekend Activity"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{PA1_template_files/figure-latex/twopanelplot-1.pdf}
+
+
+\end{document}
