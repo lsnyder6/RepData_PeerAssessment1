@@ -1,8 +1,6 @@
 ---
-title: Reproducible Research Project 1
-output:
-	html_document:
-		keep_md: true
+title: "Reproducible Research Project 1"
+author: "lsnyder6"
 ---
 ### Load and Preprocess the data
 
